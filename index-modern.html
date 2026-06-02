@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENGOS LLC - International Freight Forwarder</title>
+  <meta name="description" content="ENGOS LLC - Монголоор дамжих дэлхийн тээвэр. Агаар, төмөр зам, авто, далайн тээвэр. 25+ жилийн туршлага.">
+  
+  <!-- Preconnect for faster loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com">
+  
+  <!-- Inter Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* CSS Custom Properties */
+    :root {
+      --navy: #0A1628;
+      --navy-light: #1a2a42;
+      --navy-dark: #050d1a;
+      --orange: #F97316;
+      --orange-light: #fb923c;
+      --orange-dark: #ea580c;
+      --cyan: #06b6d4;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 40px -10px rgba(0, 0, 0, 0.2);
+      --shadow-glow: 0 0 40px rgba(249, 115, 22, 0.3);
+      --radius: 0.75rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: var(--gray-800);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* Utility Classes */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Scroll Reveal Animation */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-reveal.delay-1 { transition-delay: 0.1s; }
+    .scroll-reveal.delay-2 { transition-delay: 0.2s; }
+    .scroll-reveal.delay-3 { transition-delay: 0.3s; }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 22, 40, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled {
+      background: rgba(10, 22, 40, 0.98);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-img {
+      height: 56px;
+      width: auto;
+      object-fit: contain;
+      background: var(--white);
+      padding: 4px 8px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: var(--transition);
+    }
+
+    .logo:hover .logo-img {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray-300);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--orange);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .lang-switcher {
+      display: none;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.375rem 0.625rem;
+      border-radius: 0.375rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--gray-400);
+      transition: var(--transition);
+    }
+
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+    }
+
+    .lang-btn.active {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--white);
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0.5rem;
+      z-index: 1001;
+    }
+
+    .mobile-menu-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: var(--transition);
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--navy);
+      padding: 2rem 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    .mobile-menu .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      font-size: 1.25rem;
+    }
+
+    .mobile-menu .lang-switcher {
+      display: flex;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 998;
+    }
+
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 50%, #0d1f3c 100%);
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(249, 115, 22, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2rem;
+      font-size: 0.875rem;
+      color: var(--gray-300);
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-badge i {
+      color: var(--orange);
+    }
+
+    .hero-title {
+      font-size: clamp(2.25rem, 5vw, 4rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.125rem, 2vw, 1.375rem);
+      color: var(--gray-400);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 4rem;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--gray-400);
+      font-weight: 500;
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.875rem, 3vw, 2.5rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      font-size: 1.125rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+
+    /* Services Section */
+    .services {
+      background: var(--gray-50);
+    }
+
+    .services-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--orange) 0%, var(--orange-dark) 100%);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .service-card:hover::before {
+      transform: scaleY(1);
+    }
+
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(249, 115, 22, 0.05) 100%);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--orange);
+    }
+
+    .service-icon i {
+      width: 32px;
+      height: 32px;
+    }
+
+    .service-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-desc {
+      font-size: 0.9375rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-tag {
+      padding: 0.375rem 0.75rem;
+      background: var(--gray-100);
+      color: var(--gray-700);
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      transition: var(--transition);
+    }
+
+    .service-link:hover {
+      gap: 0.75rem;
+    }
+
+    /* Why Choose Us */
+    .why-us {
+      background: var(--white);
+    }
+
+    .features-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--white);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-icon i {
+      width: 36px;
+      height: 36px;
+    }
+
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-desc {
+      font-size: 0.9375rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(249, 115, 22, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .contact .section-title,
+    .contact .section-subtitle {
+      color: var(--white);
+    }
+
+    .contact .section-subtitle {
+      color: var(--gray-400);
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(249, 115, 22, 0.2);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--orange);
+      flex-shrink: 0;
+    }
+
+    .contact-icon i {
+      width: 24px;
+      height: 24px;
+    }
+
+    .contact-details h4 {
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-details p,
+    .contact-details a {
+      color: var(--gray-400);
+      font-size: 0.9375rem;
+    }
+
+    .contact-details a:hover {
+      color: var(--orange);
+    }
+
+    .contact-form-wrapper {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+    }
+
+    .form-title {
+      color: var(--white);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      color: var(--gray-300);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.875rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius);
+      color: var(--white);
+      font-size: 0.9375rem;
+      transition: var(--transition);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--gray-500);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--orange);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 1rem;
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--navy-dark);
+      color: var(--white);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-top {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .footer-logo img {
+      height: 64px;
+      width: auto;
+      background: var(--white);
+      padding: 6px 10px;
+      border-radius: 10px;
+    }
+
+    .footer-logo-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-logo-main {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+
+    .footer-logo-sub {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--orange);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-tagline {
+      color: var(--gray-400);
+      font-size: 1rem;
+      max-width: 300px;
+    }
+
+    .footer-columns {
+      display: grid;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-column h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links a {
+      color: var(--gray-400);
+      font-size: 0.9375rem;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--orange);
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-link {
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-400);
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background: var(--orange);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .copyright {
+      color: var(--gray-500);
+      font-size: 0.875rem;
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      top: 100px;
+      right: 1rem;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-lg);
+      max-width: 400px;
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+      z-index: 2000;
+      border-left: 4px solid var(--orange);
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification-title {
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .notification-message {
+      color: var(--gray-600);
+      font-size: 0.9375rem;
+    }
+
+    /* Responsive */
+    @media (min-width: 640px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+
+      .hero-cta {
+        flex-direction: row;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .form-group.full-width {
+        grid-column: span 2;
+      }
+
+      .footer-columns {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .container {
+        padding: 0 2rem;
+      }
+
+      .nav-links {
+        display: flex;
+      }
+
+      .lang-switcher {
+        display: flex;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr 1.2fr;
+        align-items: start;
+      }
+
+      .contact-info {
+        position: sticky;
+        top: 120px;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      body.menu-open {
+        overflow: hidden;
+      }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .scroll-reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Notification -->
+  <div class="notification" id="notification">
+    <div class="notification-title" id="notification-title">Амжилттай!</div>
+    <div class="notification-message" id="notification-message">Таны мэдээлэл илгээгдлээ.</div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="#" class="logo">
+          <img src="logo.jpg" alt="ENGOS LLC Logo" class="logo-img">
+        </a>
+        
+        <ul class="nav-links">
+          <li><a href="#home" data-i18n="nav.home">Нүүр</a></li>
+          <li><a href="#services" data-i18n="nav.services">Үйлчилгээ</a></li>
+          <li><a href="#about" data-i18n="nav.about">Бидний тухай</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Холбоо барих</a></li>
+        </ul>
+
+        <div class="nav-right">
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="mn">
+              <span>🇲🇳</span>
+              <span>МН</span>
+            </button>
+            <button class="lang-btn" data-lang="en">
+              <span>🇬🇧</span>
+              <span>EN</span>
+            </button>
+            <button class="lang-btn" data-lang="ru">
+              <span>🇷🇺</span>
+              <span>RU</span>
+            </button>
+            <button class="lang-btn" data-lang="cn">
+              <span>🇨🇳</span>
+              <span>CN</span>
+            </button>
+          </div>
+          
+          <a href="#contact" class="btn-primary" data-i18n="nav.quote">
+            <i data-lucide="file-text"></i>
+            Үнийн санал
+          </a>
+
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="nav-links">
+      <li><a href="#home" data-i18n="nav.home">Нүүр</a></li>
+      <li><a href="#services" data-i18n="nav.services">Үйлчилгээ</a></li>
+      <li><a href="#about" data-i18n="nav.about">Бидний тухай</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Холбоо барих</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="mn">🇲🇳 МН</button>
+      <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+      <button class="lang-btn" data-lang="ru">🇷🇺 RU</button>
+      <button class="lang-btn" data-lang="cn">🇨🇳 CN</button>
+    </div>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge scroll-reveal">
+          <i data-lucide="globe"></i>
+          <span data-i18n="hero.badge">Professional Freight Forwarder</span>
+        </div>
+        
+        <h1 class="hero-title scroll-reveal delay-1" data-i18n="hero.title">
+          Монголоор дамжих <span>Дэлхийн тээвэр</span>
+        </h1>
+        
+        <p class="hero-subtitle scroll-reveal delay-2" data-i18n="hero.subtitle">
+          Агаар, төмөр зам, авто зам, далай — бүх төрлийн тээвэр. 25 жилийн туршлагатай баг. Хаалганаас хаалганд.
+        </p>
+        
+        <div class="hero-cta scroll-reveal delay-3">
+          <a href="#contact" class="btn-primary" data-i18n="hero.cta1">
+            <i data-lucide="phone"></i>
+            Үнийн санал авах
+          </a>
+          <a href="#about" class="btn-secondary" data-i18n="hero.cta2">
+            <i data-lucide="info"></i>
+            Бидний тухай
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-card scroll-reveal">
+            <div class="stat-number">25+</div>
+            <div class="stat-label" data-i18n="stats.years">Жил</div>
+          </div>
+          <div class="stat-card scroll-reveal delay-1">
+            <div class="stat-number">50+</div>
+            <div class="stat-label" data-i18n="stats.countries">Орон</div>
+          </div>
+          <div class="stat-card scroll-reveal delay-2">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label" data-i18n="stats.cargo">Ачаа</div>
+          </div>
+          <div class="stat-card scroll-reveal delay-3">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label" data-i18n="stats.service">Үйлчилгээ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <div class="section-label">
+          <i data-lucide="package"></i>
+          <span data-i18n="services.label">Манай үйлчилгээ</span>
+        </div>
+        <h2 class="section-title" data-i18n="services.title">Бүх төрлийн тээврийн шийдэл</h2>
+        <p class="section-subtitle" data-i18n="services.subtitle">Таны ачааг хурдан, аюулгүй, хямд хүргэнэ</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card scroll-reveal">
+          <div class="service-icon">
+            <i data-lucide="plane"></i>
+          </div>
+          <h3 class="service-title" data-i18n="services.air.title">Агаарын тээвэр</h3>
+          <p class="service-desc" data-i18n="services.air.desc">Хамгийн хурдан тээвэр. Яаралтай ачаа, үнэт бараа, эмэнд тавигдах температурын шаардлагатай бүтээгдэхүүн</p>
+          <div class="service-tags">
+            <span class="service-tag" data-i18n="services.air.tag1">Импорт</span>
+            <span class="service-tag" data-i18n="services.air.tag2">Экспорт</span>
+          </div>
+          <a href="#contact" class="service-link" data-i18n="services.link">
+            Дэлгэрэнгүй <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="service-card scroll-reveal delay-1">
+          <div class="service-icon">
+            <i data-lucide="train-front"></i>
+          </div>
+          <h3 class="service-title" data-i18n="services.rail.title">Төмөр замын тээвэр</h3>
+          <p class="service-desc" data-i18n="services.rail.desc">Транс-Монголын төмөр замаар Европ-Азийн хооронд хямд, найдвартай тээвэрлэлт</p>
+          <div class="service-tags">
+            <span class="service-tag" data-i18n="services.rail.tag1">Транзит</span>
+            <span class="service-tag" data-i18n="services.rail.tag2">FCL</span>
+          </div>
+          <a href="#contact" class="service-link" data-i18n="services.link">
+            Дэлгэрэнгүй <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="service-card scroll-reveal delay-2">
+          <div class="service-icon">
+            <i data-lucide="truck"></i>
+          </div>
+          <h3 class="service-title" data-i18n="services.road.title">Авто замын тээвэр</h3>
+          <p class="service-desc" data-i18n="services.road.desc">Хятад-Монгол-Орос чиглэлийн хаалганаас хаалганд тээвэр. Бүрэн даатгалтай</p>
+          <div class="service-tags">
+            <span class="service-tag" data-i18n="services.road.tag1">FTL</span>
+            <span class="service-tag" data-i18n="services.road.tag2">LTL</span>
+          </div>
+          <a href="#contact" class="service-link" data-i18n="services.link">
+            Дэлгэрэнгүй <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="service-card scroll-reveal">
+          <div class="service-icon">
+            <i data-lucide="ship"></i>
+          </div>
+          <h3 class="service-title" data-i18n="services.sea.title">Далайн тээвэр</h3>
+          <p class="service-desc" data-i18n="services.sea.desc">Тяньжин, Шанхай, Бусан, Владивостокоор дэлхий даяар тээвэрлэлт. FCL & LCL</p>
+          <div class="service-tags">
+            <span class="service-tag" data-i18n="services.sea.tag1">FCL</span>
+            <span class="service-tag" data-i18n="services.sea.tag2">LCL</span>
+          </div>
+          <a href="#contact" class="service-link" data-i18n="services.link">
+            Дэлгэрэнгүй <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="service-card scroll-reveal delay-1">
+          <div class="service-icon">
+            <i data-lucide="shuffle"></i>
+          </div>
+          <h3 class="service-title" data-i18n="services.multimodal.title">Холимог тээвэр</h3>
+          <p class="service-desc" data-i18n="services.multimodal.desc">Агаар+төмөр зам, Далай+авто гэх мэт оновчтой хослол. Зардлаа хэмнэ</p>
+          <div class="service-tags">
+            <span class="service-tag" data-i18n="services.multimodal.tag1">Optimize</span>
+            <span class="service-tag" data-i18n="services.multimodal.tag2">Door-Door</span>
+          </div>
+          <a href="#contact" class="service-link" data-i18n="services.link">
+            Дэлгэрэнгүй <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="service-card scroll-reveal delay-2">
+          <div class="service-icon">
+            <i data-lucide="file-check"></i>
+          </div>
+          <h3 class="service-title" data-i18n="services.customs.title">Гаалийн зуучлал</h3>
+          <p class="service-desc" data-i18n="services.customs.desc">Бичиг баримт бүрдүүлэлт, HS код тодорхойлолт, татвар тооцоо, зөвшөөрөл</p>
+          <div class="service-tags">
+            <span class="service-tag" data-i18n="services.customs.tag1">Clearance</span>
+            <span class="service-tag" data-i18n="services.customs.tag2">Consult</span>
+          </div>
+          <a href="#contact" class="service-link" data-i18n="services.link">
+            Дэлгэрэнгүй <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section why-us" id="about">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <div class="section-label">
+          <i data-lucide="star"></i>
+          <span data-i18n="why.label">Яагаад бид вэ?</span>
+        </div>
+        <h2 class="section-title" data-i18n="why.title">ENGOS-г сонгох шалтгаан</h2>
+        <p class="section-subtitle" data-i18n="why.subtitle">25 жилийн туршлага, олон улсын стандарт, найдвартай үйлчилгээ</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card scroll-reveal">
+          <div class="feature-icon">
+            <i data-lucide="network"></i>
+          </div>
+          <h3 class="feature-title" data-i18n="why.network.title">Дэлхийн сүлжээ</h3>
+          <p class="feature-desc" data-i18n="why.network.desc">50+ улс, 1000+ агентийн сүлжээ. Хаана ч хүргэнэ</p>
+        </div>
+
+        <div class="feature-card scroll-reveal delay-1">
+          <div class="feature-icon">
+            <i data-lucide="award"></i>
+          </div>
+          <h3 class="feature-title" data-i18n="why.experience.title">25 жилийн туршлага</h3>
+          <p class="feature-desc" data-i18n="why.experience.desc">Мэргэжлийн баг, олон мянган амжилттай тээвэрлэлт</p>
+        </div>
+
+        <div class="feature-card scroll-reveal delay-2">
+          <div class="feature-icon">
+            <i data-lucide="door-open"></i>
+          </div>
+          <h3 class="feature-title" data-i18n="why.door.title">Хаалганаас хаалганд</h3>
+          <p class="feature-desc" data-i18n="why.door.desc">Агуулахаас агуулахад иж бүрэн үйлчилгээ. Таны ачаа бидний хариуцлага</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <div class="section-label">
+          <i data-lucide="message-circle"></i>
+          <span data-i18n="contact.label">Холбоо барих</span>
+        </div>
+        <h2 class="section-title" data-i18n="contact.title">Холбоо барих</h2>
+        <p class="section-subtitle" data-i18n="contact.subtitle">Үнийн санал авах, зөвлөгөө авахыг хүсвэл бидэнтэй холбогдоорой</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info scroll-reveal">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i data-lucide="map-pin"></i>
+            </div>
+            <div class="contact-details">
+              <h4 data-i18n="contact.address.label">Хаяг</h4>
+              <p data-i18n="contact.address.value">16010, Баянгол дүүрэг, Улаанбаатар, Монгол</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i data-lucide="mail"></i>
+            </div>
+            <div class="contact-details">
+              <h4 data-i18n="contact.email.label">Имэйл</h4>
+              <a href="mailto:info@engos.mn">info@engos.mn</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i data-lucide="phone"></i>
+            </div>
+            <div class="contact-details">
+              <h4 data-i18n="contact.phone.label">Утас</h4>
+              <a href="tel:+97655123588">+976 5512 3588</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i data-lucide="clock"></i>
+            </div>
+            <div class="contact-details">
+              <h4 data-i18n="contact.hours.label">Ажлын цаг</h4>
+              <p data-i18n="contact.hours.value">Даваа-Баасан 09:00-18:00</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper scroll-reveal delay-1">
+          <h3 class="form-title" data-i18n="contact.form.title">Үнийн санал авах</h3>
+          <form id="quoteForm" class="form-grid">
+            <div class="form-group">
+              <label for="name" data-i18n="contact.form.name">Нэр *</label>
+              <input type="text" id="name" name="name" required placeholder="Таны нэр">
+            </div>
+            <div class="form-group">
+              <label for="company" data-i18n="contact.form.company">Компани</label>
+              <input type="text" id="company" name="company" placeholder="Компанийн нэр">
+            </div>
+            <div class="form-group">
+              <label for="phone" data-i18n="contact.form.phone">Утас *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+976">
+            </div>
+            <div class="form-group">
+              <label for="email" data-i18n="contact.form.email">Имэйл</label>
+              <input type="email" id="email" name="email" placeholder="email@example.com">
+            </div>
+            <div class="form-group full-width">
+              <label for="transport" data-i18n="contact.form.transport">Тээврийн төрөл</label>
+              <select id="transport" name="transport">
+                <option value="" data-i18n="contact.form.transport.placeholder">Сонгох...</option>
+                <option value="air" data-i18n="contact.form.transport.air">Агаар</option>
+                <option value="rail" data-i18n="contact.form.transport.rail">Төмөр зам</option>
+                <option value="road" data-i18n="contact.form.transport.road">Авто</option>
+                <option value="sea" data-i18n="contact.form.transport.sea">Далай</option>
+                <option value="multimodal" data-i18n="contact.form.transport.multimodal">Холимог</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="origin" data-i18n="contact.form.origin">Гарах цэг</label>
+              <input type="text" id="origin" name="origin" placeholder="Хаанаас">
+            </div>
+            <div class="form-group">
+              <label for="destination" data-i18n="contact.form.destination">Очих цэг</label>
+              <input type="text" id="destination" name="destination" placeholder="Хаашаа">
+            </div>
+            <div class="form-group full-width">
+              <label for="cargo" data-i18n="contact.form.cargo">Ачааны мэдээлэл</label>
+              <textarea id="cargo" name="cargo" placeholder="Жин, хэмжээ, төрөл..."></textarea>
+            </div>
+            <div class="form-group full-width">
+              <button type="submit" class="btn-primary form-submit" data-i18n="contact.form.submit">
+                <i data-lucide="send"></i>
+                Үнийн санал авах
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="logo.jpg" alt="ENGOS LLC Logo">
+            <div class="footer-logo-text">
+              <span class="footer-logo-main">ENGOS</span>
+              <span class="footer-logo-sub">LLC</span>
+            </div>
+          </div>
+          <p class="footer-tagline" data-i18n="footer.tagline">Монголоор дамжих дэлхийн тээвэр</p>
+        </div>
+      </div>
+
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h4 data-i18n="footer.company.title">Компани</h4>
+          <ul class="footer-links">
+            <li><a href="#about" data-i18n="footer.company.about">Бидний тухай</a></li>
+            <li><a href="#" data-i18n="footer.company.careers">Ажлын байр</a></li>
+            <li><a href="#" data-i18n="footer.company.news">Мэдээ</a></li>
+            <li><a href="#contact" data-i18n="footer.company.contact">Холбоо барих</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4 data-i18n="footer.services.title">Үйлчилгээ</h4>
+          <ul class="footer-links">
+            <li><a href="#services" data-i18n="services.air.title">Агаарын тээвэр</a></li>
+            <li><a href="#services" data-i18n="services.rail.title">Төмөр замын тээвэр</a></li>
+            <li><a href="#services" data-i18n="services.road.title">Авто замын тээвэр</a></li>
+            <li><a href="#services" data-i18n="services.sea.title">Далайн тээвэр</a></li>
+            <li><a href="#services" data-i18n="services.multimodal.title">Холимог тээвэр</a></li>
+            <li><a href="#services" data-i18n="services.customs.title">Гаалийн зуучлал</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4 data-i18n="footer.contact.title">Холбоо барих</h4>
+          <ul class="footer-links">
+            <li><i data-lucide="map-pin" style="width:16px;height:16px;"></i> Баянгол дүүрэг, Улаанбаатар</li>
+            <li><a href="mailto:info@engos.mn"><i data-lucide="mail" style="width:16px;height:16px;"></i> info@engos.mn</a></li>
+            <li><a href="tel:+97655123588"><i data-lucide="phone" style="width:16px;height:16px;"></i> +976 5512 3588</a></li>
+            <li><i data-lucide="clock" style="width:16px;height:16px;"></i> <span data-i18n="contact.hours.value">Даваа-Баасан: 09:00-18:00</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-social">
+        <a href="#" class="social-link" aria-label="Facebook">
+          <i data-lucide="facebook"></i>
+        </a>
+        <a href="#" class="social-link" aria-label="LinkedIn">
+          <i data-lucide="linkedin"></i>
+        </a>
+        <a href="#" class="social-link" aria-label="WeChat">
+          <i data-lucide="message-circle"></i>
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright" data-i18n="footer.copyright">© 2025 ENGOS LLC. Бүх эрх хуулиар хамгаалагдсан.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Translations
+    const translations = {
+      mn: {
+        nav: { home: "Нүүр", services: "Үйлчилгээ", about: "Бидний тухай", contact: "Холбоо барих", quote: "Үнийн санал" },
+        hero: {
+          badge: "Professional Freight Forwarder",
+          title: "Монголоор дамжих Дэлхийн тээвэр",
+          subtitle: "Агаар, төмөр зам, авто зам, далай — бүх төрлийн тээвэр. 25 жилийн туршлагатай баг. Хаалганаас хаалганд.",
+          cta1: "Үнийн санал авах",
+          cta2: "Бидний тухай"
+        },
+        stats: { years: "Жил", countries: "Орон", cargo: "Ачаа", service: "Үйлчилгээ" },
+        services: {
+          label: "Манай үйлчилгээ",
+          title: "Бүх төрлийн тээврийн шийдэл",
+          subtitle: "Таны ачааг хурдан, аюулгүй, хямд хүргэнэ",
+          link: "Дэлгэрэнгүй",
+          air: { title: "Агаарын тээвэр", desc: "Хамгийн хурдан тээвэр. Яаралтай ачаа, үнэт бараа, эмэнд тавигдах температурын шаардлагатай бүтээгдэхүүн", tag1: "Импорт", tag2: "Экспорт" },
+          rail: { title: "Төмөр замын тээвэр", desc: "Транс-Монголын төмөр замаар Европ-Азийн хооронд хямд, найдвартай тээвэрлэлт", tag1: "Транзит", tag2: "FCL" },
+          road: { title: "Авто замын тээвэр", desc: "Хятад-Монгол-Орос чиглэлийн хаалганаас хаалганд тээвэр. Бүрэн даатгалтай", tag1: "FTL", tag2: "LTL" },
+          sea: { title: "Далайн тээвэр", desc: "Тяньжин, Шанхай, Бусан, Владивостокоор дэлхий даяар тээвэрлэлт. FCL & LCL", tag1: "FCL", tag2: "LCL" },
+          multimodal: { title: "Холимог тээвэр", desc: "Агаар+төмөр зам, Далай+авто гэх мэт оновчтой хослол. Зардлаа хэмнэ", tag1: "Optimize", tag2: "Door-Door" },
+          customs: { title: "Гаалийн зуучлал", desc: "Бичиг баримт бүрдүүлэлт, HS код тодорхойлолт, татвар тооцоо, зөвшөөрөл", tag1: "Clearance", tag2: "Consult" }
+        },
+        why: {
+          label: "Яагаад бид вэ?",
+          title: "ENGOS-г сонгох шалтгаан",
+          subtitle: "25 жилийн туршлага, олон улсын стандарт, найдвартай үйлчилгээ",
+          network: { title: "Дэлхийн сүлжээ", desc: "50+ улс, 1000+ агентийн сүлжээ. Хаана ч хүргэнэ" },
+          experience: { title: "25 жилийн туршлага", desc: "Мэргэжлийн баг, олон мянган амжилттай тээвэрлэлт" },
+          door: { title: "Хаалганаас хаалганд", desc: "Агуулахаас агуулахад иж бүрэн үйлчилгээ. Таны ачаа бидний хариуцлага" }
+        },
+        contact: {
+          label: "Холбоо барих",
+          title: "Холбоо барих",
+          subtitle: "Үнийн санал авах, зөвлөгөө авахыг хүсвэл бидэнтэй холбогдоорой",
+          address: { label: "Хаяг", value: "16010, Баянгол дүүрэг, Улаанбаатар, Монгол" },
+          email: { label: "Имэйл" },
+          phone: { label: "Утас" },
+          hours: { label: "Ажлын цаг", value: "Даваа-Баасан 09:00-18:00" },
+          form: {
+            title: "Үнийн санал авах",
+            name: "Нэр *",
+            company: "Компани",
+            phone: "Утас *",
+            email: "Имэйл",
+            transport: "Тээврийн төрөл",
+            "transport.placeholder": "Сонгох...",
+            "transport.air": "Агаар",
+            "transport.rail": "Төмөр зам",
+            "transport.road": "Авто",
+            "transport.sea": "Далай",
+            "transport.multimodal": "Холимог",
+            origin: "Гарах цэг",
+            destination: "Очих цэг",
+            cargo: "Ачааны мэдээлэл",
+            submit: "Үнийн санал авах"
+          }
+        },
+        footer: {
+          tagline: "Монголоор дамжих дэлхийн тээвэр",
+          company: { title: "Компани", about: "Бидний тухай", careers: "Ажлын байр", news: "Мэдээ", contact: "Холбоо барих" },
+          services: { title: "Үйлчилгээ" },
+          contact: { title: "Холбоо барих" },
+          copyright: "© 2025 ENGOS LLC. Бүх эрх хуулиар хамгаалагдсан."
+        }
+      },
+      en: {
+        nav: { home: "Home", services: "Services", about: "About", contact: "Contact", quote: "Get Quote" },
+        hero: {
+          badge: "Professional Freight Forwarder",
+          title: "Global Freight Through Mongolia",
+          subtitle: "Air, rail, road, and sea — all transport types. 25 years of experience. Door-to-door service.",
+          cta1: "Get Quote",
+          cta2: "About Us"
+        },
+        stats: { years: "Years", countries: "Countries", cargo: "Shipments", service: "Service" },
+        services: {
+          label: "Our Services",
+          title: "All Transport Solutions",
+          subtitle: "Fast, safe, and affordable cargo delivery",
+          link: "Learn More",
+          air: { title: "Air Freight", desc: "Fastest transport. Urgent cargo, valuable goods, temperature-sensitive products", tag1: "Import", tag2: "Export" },
+          rail: { title: "Rail Freight", desc: "Cost-effective, reliable transport via Trans-Mongolian railway between Europe and Asia", tag1: "Transit", tag2: "FCL" },
+          road: { title: "Road Freight", desc: "Door-to-door transport on China-Mongolia-Russia corridor. Fully insured", tag1: "FTL", tag2: "LTL" },
+          sea: { title: "Sea Freight", desc: "Global shipping via Tianjin, Shanghai, Busan, Vladivostok. FCL & LCL", tag1: "FCL", tag2: "LCL" },
+          multimodal: { title: "Multimodal", desc: "Optimal combinations like Air+Rail, Sea+Road. Save costs", tag1: "Optimize", tag2: "Door-Door" },
+          customs: { title: "Customs Brokerage", desc: "Documentation, HS code classification, tax calculation, permits", tag1: "Clearance", tag2: "Consult" }
+        },
+        why: {
+          label: "Why Choose Us?",
+          title: "Reasons to Choose ENGOS",
+          subtitle: "25 years of experience, international standards, reliable service",
+          network: { title: "Global Network", desc: "50+ countries, 1000+ agents. We deliver anywhere" },
+          experience: { title: "25 Years Experience", desc: "Professional team, thousands of successful shipments" },
+          door: { title: "Door-to-Door", desc: "Complete warehouse-to-warehouse service. Your cargo is our responsibility" }
+        },
+        contact: {
+          label: "Contact Us",
+          title: "Contact Us",
+          subtitle: "For quotes or consultation, please get in touch",
+          address: { label: "Address", value: "16010, Bayangol district, Ulaanbaatar, Mongolia" },
+          email: { label: "Email" },
+          phone: { label: "Phone" },
+          hours: { label: "Working Hours", value: "Mon-Fri 09:00-18:00" },
+          form: {
+            title: "Request Quote",
+            name: "Name *",
+            company: "Company",
+            phone: "Phone *",
+            email: "Email",
+            transport: "Transport Type",
+            "transport.placeholder": "Select...",
+            "transport.air": "Air",
+            "transport.rail": "Rail",
+            "transport.road": "Road",
+            "transport.sea": "Sea",
+            "transport.multimodal": "Multimodal",
+            origin: "Origin",
+            destination: "Destination",
+            cargo: "Cargo Details",
+            submit: "Request Quote"
+          }
+        },
+        footer: {
+          tagline: "Global Freight Through Mongolia",
+          company: { title: "Company", about: "About Us", careers: "Careers", news: "News", contact: "Contact" },
+          services: { title: "Services" },
+          contact: { title: "Contact" },
+          copyright: "© 2025 ENGOS LLC. All rights reserved."
+        }
+      },
+      ru: {
+        nav: { home: "Главная", services: "Услуги", about: "О нас", contact: "Контакты", quote: "Запрос цены" },
+        hero: {
+          badge: "Профессиональный экспедитор",
+          title: "Глобальные перевозки через Монголию",
+          subtitle: "Авиа, железная дорога, автомобиль, море — все виды транспорта. 25 лет опыта.",
+          cta1: "Запросить цену",
+          cta2: "О нас"
+        },
+        stats: { years: "Лет", countries: "Стран", cargo: "Грузов", service: "Сервис" },
+        services: {
+          label: "Наши услуги",
+          title: "Все транспортные решения",
+          subtitle: "Быстрая, безопасная и доступная доставка грузов",
+          link: "Подробнее",
+          air: { title: "Авиаперевозки", desc: "Самый быстрый транспорт. Срочные грузы, ценные товары, температурные грузы", tag1: "Импорт", tag2: "Экспорт" },
+          rail: { title: "Ж/д перевозки", desc: "Экономичные надежные перевозки через Транс-Монгольскую магистраль", tag1: "Транзит", tag2: "FCL" },
+          road: { title: "Автоперевозки", desc: "От двери до двери по коридору Китай-Монголия-Россия. Полная страховка", tag1: "FTL", tag2: "LTL" },
+          sea: { title: "Морские перевозки", desc: "Глобальная доставка через Тяньцзинь, Шанхай, Пусан, Владивосток", tag1: "FCL", tag2: "LCL" },
+          multimodal: { title: "Мультимодальные", desc: "Оптимальные комбинации: авиа+ж/д, море+авто. Экономия средств", tag1: "Optimize", tag2: "Door-Door" },
+          customs: { title: "Таможенное оформление", desc: "Документация, коды ТН ВЭД, расчет налогов, разрешения", tag1: "Clearance", tag2: "Consult" }
+        },
+        why: {
+          label: "Почему мы?",
+          title: "Причины выбрать ENGOS",
+          subtitle: "25 лет опыта, международные стандарты, надежный сервис",
+          network: { title: "Глобальная сеть", desc: "50+ стран, 1000+ агентов. Доставим куда угодно" },
+          experience: { title: "25 лет опыта", desc: "Профессиональная команда, тысячи успешных перевозок" },
+          door: { title: "От двери до двери", desc: "Полный сервис от склада до склада. Ваш груз — наша ответственность" }
+        },
+        contact: {
+          label: "Контакты",
+          title: "Свяжитесь с нами",
+          subtitle: "Для запроса цены или консультации, пожалуйста, свяжитесь с нами",
+          address: { label: "Адрес", value: "16010, район Баянгол, Улан-Батор, Монголия" },
+          email: { label: "Email" },
+          phone: { label: "Телефон" },
+          hours: { label: "Рабочие часы", value: "Пн-Пт 09:00-18:00" },
+          form: {
+            title: "Запросить цену",
+            name: "Имя *",
+            company: "Компания",
+            phone: "Телефон *",
+            email: "Email",
+            transport: "Вид транспорта",
+            "transport.placeholder": "Выбрать...",
+            "transport.air": "Авиа",
+            "transport.rail": "Ж/д",
+            "transport.road": "Авто",
+            "transport.sea": "Море",
+            "transport.multimodal": "Мультимодальный",
+            origin: "Отправление",
+            destination: "Назначение",
+            cargo: "Информация о грузе",
+            submit: "Запросить цену"
+          }
+        },
+        footer: {
+          tagline: "Глобальные перевозки через Монголию",
+          company: { title: "Компания", about: "О нас", careers: "Вакансии", news: "Новости", contact: "Контакты" },
+          services: { title: "Услуги" },
+          contact: { title: "Контакты" },
+          copyright: "© 2025 ENGOS LLC. Все права защищены."
+        }
+      },
+      cn: {
+        nav: { home: "首页", services: "服务", about: "关于我们", contact: "联系我们", quote: "获取报价" },
+        hero: {
+          badge: "专业货运代理",
+          title: "经蒙古的全球货运",
+          subtitle: "空运、铁路、公路、海运 — 全方位运输服务。25年经验团队。门到门服务。",
+          cta1: "获取报价",
+          cta2: "关于我们"
+        },
+        stats: { years: "年", countries: "国家", cargo: "货物", service: "服务" },
+        services: {
+          label: "我们的服务",
+          title: "全方位运输解决方案",
+          subtitle: "快速、安全、经济的货物运输",
+          link: "了解更多",
+          air: { title: "空运", desc: "最快的运输方式。紧急货物、贵重物品、温控产品", tag1: "进口", tag2: "出口" },
+          rail: { title: "铁路运输", desc: "经泛蒙铁路在欧亚之间的经济可靠运输", tag1: "过境", tag2: "整箱" },
+          road: { title: "公路运输", desc: "中蒙俄走廊门到门运输。全额保险", tag1: "整车", tag2: "零担" },
+          sea: { title: "海运", desc: "经天津、上海、釜山、符拉迪沃斯托克全球运输。整箱和拼箱", tag1: "整箱", tag2: "拼箱" },
+          multimodal: { title: "多式联运", desc: "最优组合如空运+铁路、海运+公路。节省成本", tag1: "优化", tag2: "门到门" },
+          customs: { title: "报关代理", desc: "文件准备、HS编码分类、税费计算、许可证", tag1: "清关", tag2: "咨询" }
+        },
+        why: {
+          label: "为什么选择我们？",
+          title: "选择ENGOS的理由",
+          subtitle: "25年经验、国际标准、可靠服务",
+          network: { title: "全球网络", desc: "50+国家、1000+代理。送货到任何地方" },
+          experience: { title: "25年经验", desc: "专业团队、数千次成功运输" },
+          door: { title: "门到门", desc: "完整的仓库到仓库服务。您的货物是我们的责任" }
+        },
+        contact: {
+          label: "联系我们",
+          title: "联系我们",
+          subtitle: "如需报价或咨询，请联系我们",
+          address: { label: "地址", value: "16010, 巴彦高勒区, 乌兰巴托, 蒙古" },
+          email: { label: "电子邮件" },
+          phone: { label: "电话" },
+          hours: { label: "工作时间", value: "周一至周五 09:00-18:00" },
+          form: {
+            title: "请求报价",
+            name: "姓名 *",
+            company: "公司",
+            phone: "电话 *",
+            email: "电子邮件",
+            transport: "运输方式",
+            "transport.placeholder": "选择...",
+            "transport.air": "空运",
+            "transport.rail": "铁路",
+            "transport.road": "公路",
+            "transport.sea": "海运",
+            "transport.multimodal": "多式联运",
+            origin: "起点",
+            destination: "目的地",
+            cargo: "货物信息",
+            submit: "请求报价"
+          }
+        },
+        footer: {
+          tagline: "经蒙古的全球货运",
+          company: { title: "公司", about: "关于我们", careers: "招聘", news: "新闻", contact: "联系我们" },
+          services: { title: "服务" },
+          contact: { title: "联系方式" },
+          copyright: "© 2025 ENGOS LLC. 版权所有。"
+        }
+      }
+    };
+
+    let currentLang = 'mn';
+
+    function updateLanguage() {
+      const t = translations[currentLang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        const keys = key.split('.');
+        let value = t;
+        for (const k of keys) {
+          if (value && value[k] !== undefined) value = value[k];
+          else { value = null; break; }
+        }
+        if (value !== null) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = value;
+          } else {
+            el.textContent = value;
+          }
+        }
+      });
+      document.documentElement.lang = currentLang;
+    }
+
+    // Language switcher
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentLang = btn.dataset.lang;
+        updateLanguage();
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const headerOffset = 80;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          
+          // Close mobile menu if open
+          if (mobileMenu.classList.contains('open')) {
+            toggleMenu();
+          }
+        }
+      });
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('overlay');
+
+    function toggleMenu() {
+      mobileMenu.classList.toggle('open');
+      overlay.classList.toggle('show');
+      document.body.classList.toggle('menu-open');
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Form handling
+    const form = document.getElementById('quoteForm');
+    const notification = document.getElementById('notification');
+
+    function showNotification(title, message) {
+      document.getElementById('notification-title').textContent = title;
+      document.getElementById('notification-message').textContent = message;
+      notification.classList.add('show');
+      setTimeout(() => notification.classList.remove('show'), 5000);
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      
+      if (!data.name || !data.phone) {
+        showNotification('Анхааруулга', 'Нэр болон утсаа оруулна уу');
+        return;
+      }
+      
+      showNotification('Амжилттай!', 'Таны хүсэлт илгээгдлээ. Бид удахгүй холбогдох болно.');
+      form.reset();
+    });
+
+    // Initialize
+    updateLanguage();
+  </script>
+</body>
+</html>
