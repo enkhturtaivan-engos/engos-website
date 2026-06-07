@@ -1577,7 +1577,7 @@
 
                 <div class="contact-form-wrapper scroll-reveal">
                     <h3 class="form-title" data-i18n="form.title">Үнийн санал авах</h3>
-                    <form id="quoteForm">
+                    <form id="quoteForm" action="https://formspree.io/f/xgobalov" method="POST">
                         <div class="form-grid">
                             <div class="form-group">
                                 <label class="form-label" data-i18n="form.name">Нэр <span>*</span></label>
@@ -2399,7 +2399,7 @@
             }, 5000);
         }
 
-        quoteForm.addEventListener('submit', (e) => {
+        quoteForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const formData = new FormData(quoteForm);
@@ -2415,26 +2415,46 @@
                 return;
             }
             
-            // Simulate form submission
             const submitBtn = quoteForm.querySelector('.btn-submit');
             const originalText = submitBtn.textContent;
             submitBtn.textContent = currentLang === 'mn' ? 'Илгээж байна...' : currentLang === 'en' ? 'Sending...' : currentLang === 'ru' ? 'Отправка...' : '发送中...';
             submitBtn.disabled = true;
             
-            setTimeout(() => {
-                showNotification(
-                    currentLang === 'mn' ? 'Амжилттай' : currentLang === 'en' ? 'Success' : currentLang === 'ru' ? 'Успешно' : '成功',
-                    currentLang === 'mn' ? 'Таны хүсэлт хүлээн авлаа. Бид удахгүй холбогдох болно.' : 
-                    currentLang === 'en' ? 'Your request has been received. We will contact you soon.' : 
-                    currentLang === 'ru' ? 'Ваш запрос получен. Мы свяжемся с вами в ближайшее время.' : 
-                    '您的请求已收到。我们会尽快与您联系。',
-                    'success'
-                );
+            try {
+                const response = await fetch(quoteForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
                 
-                quoteForm.reset();
+                if (response.ok) {
+                    showNotification(
+                        currentLang === 'mn' ? 'Амжилттай' : currentLang === 'en' ? 'Success' : currentLang === 'ru' ? 'Успешно' : '成功',
+                        currentLang === 'mn' ? 'Таны хүсэлт хүлээн авлаа. Бид удахгүй холбогдох болно.' : 
+                        currentLang === 'en' ? 'Your request has been received. We will contact you soon.' : 
+                        currentLang === 'ru' ? 'Ваш запрос получен. Мы свяжемся с вами в ближайшее время.' : 
+                        '您的请求已收到。我们会尽快与您联系。',
+                        'success'
+                    );
+                    quoteForm.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                showNotification(
+                    currentLang === 'mn' ? 'Алдаа' : currentLang === 'en' ? 'Error' : currentLang === 'ru' ? 'Ошибка' : '错误',
+                    currentLang === 'mn' ? 'Илгээхэд алдаа гарлаа. Дахин оролдоно уу.' : 
+                    currentLang === 'en' ? 'Failed to send. Please try again.' : 
+                    currentLang === 'ru' ? 'Не удалось отправить. Пожалуйста, попробуйте снова.' : 
+                    '发送失败。请重试。',
+                    'error'
+                );
+            } finally {
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-            }, 1500);
+            }
         });
 
         // Re-initialize Lucide icons after language change
